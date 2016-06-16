@@ -1,6 +1,6 @@
 <?php
 	class Currency{
-		private $baseUrl = 'https://openexchangerates.org/api/latest.json?';
+		private $baseUrl = 'https://openexchangerates.org/api/';
 		private $appID = 'app_id=';
 		private $data = array();
 
@@ -10,12 +10,12 @@
 		}
 
 		private function getLatestJSON(){
-			return $json = file_get_contents($this->baseUrl . $this->appID);
+			$url = $this->baseUrl . 'latest.json?' . $this->appID;
+			return $json = file_get_contents($url);
 		}
 
 		public function getQuote($cCode, $json = false){
 			$output = array();
-
 			if(array_key_exists($cCode, $this->data['rates'])){
 				$output['timestamp'] = $this->data['timestamp'];
 				$output[$cCode] = $this->data['rates'][$cCode];
