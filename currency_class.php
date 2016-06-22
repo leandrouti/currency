@@ -1,4 +1,11 @@
 <?php
+	/*
+	*	To use this class, first you need to register as a developer on
+	*	https://openexchangerates.org and get the API key.
+	*	This class translates the JSON from Open Exchange Rates into
+	*	PHP Array.
+	*/
+
 	class Currency{
 		private $baseUrl = 'https://openexchangerates.org/api/';
 		private $appID = 'app_id=';
