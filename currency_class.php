@@ -4,6 +4,7 @@
 	*	https://openexchangerates.org and get the API key.
 	*	This class translates the JSON from Open Exchange Rates into
 	*	PHP Array.
+	*	The base currency is USD (United States Dollar)
 	*/
 
 	class Currency{
@@ -31,9 +32,15 @@
 				return false;
 			}
 		}
+
+		public static function getSymbolList(){
+			$url = "https://openexchangerates.org/api/currencies.json";
+			$list = file_get_contents($url);
+			return json_decode($list, true);
+		}
 	}
 	include('credential.php');
 	$cr = new Currency($appId);
-
-	var_dump($cr->getQuote('JPY', true));
+	echo '<pre>';
+	var_dump($cr->getQuote('BRL'));
 ?>
